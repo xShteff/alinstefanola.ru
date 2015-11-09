@@ -1,21 +1,18 @@
 // ==UserScript==
 // @name         The West Multi-Purchase 
 // @version      0.01
-// @description  public build 3
+// @description  public build 4
 // @author       Alin "xShteff" Olaru, Slygoxx
 // @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
 // @downloadURL  https://xshteff.github.io/userscripts/store.user.js
 // @updateURL    https://xshteff.github.io/userscripts/store.user.js
 // ==/UserScript==
-
 /*
     COPYRIGHT
     End users are licensed the right to download the code into their web browser(s) for standard and reasonable usage only.
     If you want the script translated, you shall contact the script owner for this.
 */
-
-
 function runScript(source) {
     if ('function' == typeof source) {
         source = '(' + source + ')();';
@@ -37,17 +34,16 @@ runScript(function() {
     Trader.amountChanged = function() {
         var totalPrice = $('#xsht_item_buy_amount').val() * $('#xsht_item_price').text();
         $('#xsht_total_price').text('$ ' + totalPrice);
-        if(totalPrice > Character.deposit + Character.money){
+        if (totalPrice > Character.deposit + Character.money) {
             $('#xsht_total_price').css({
-                'color' : 'red',
-                'font-weight' : 'bold'
+                'color': 'red',
+                'font-weight': 'bold'
             });
             $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeOut();
-        }
-        else{
+        } else {
             $('#xsht_total_price').css({
-                'color' : 'black',
-                'font-weight' : 'normal'
+                'color': 'black',
+                'font-weight': 'normal'
             });
             $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeIn();
         }
@@ -59,7 +55,7 @@ runScript(function() {
         var barContainer = $('<div></div>').attr('id', 'xsht_bar_container').append(bar.getMainDiv());
         $('#xsht_load_screen').append(barContainer);
         $('#xsht_load_screen').fadeIn();
-        if(bar.maxValue > 1)
+        if (bar.maxValue > 1)
             new UserMessage("Started buying " + bar.maxValue + " products! Please wait until the process is completed.", UserMessage.TYPE_ERROR).show();
         $('#xsht_load_screen .tw2gui_progressbar_progress').append("<span id='xsht_bar_timer' style=\"z-index: 2; right: 5px; top: 0; bottom: 0; position: absolute; color: white; font-size: 12px;line-height: 19px;text-shadow: black 1px 1px 1px;\">1:00</span>");
         Trader.startTime = new Date().getTime() / 1000;
@@ -67,15 +63,15 @@ runScript(function() {
 
     Trader.increaseProgress = function() {
         progressBar.increase(1);
-        if(progressBar.value == progressBar.maxValue){
+        if (progressBar.value == progressBar.maxValue) {
             $('#xsht_load_screen').fadeOut();
-            if(progressBar.maxValue > 1)
+            if (progressBar.maxValue > 1)
                 new UserMessage(buyStatusText, buyStatus).show();
         }
         Trader.updateTimer();
     }
 
-    Trader.buy_popup_xhtml = '<div class="bag_item float_left"><img src="%buy_img%" /></div>' + '<span class="item_popup_sell_value">' + 'Single Purchase price:'.escapeHTML() + '$ <span id="xsht_item_price">%buy_popup_price%</span></span><br />' + '<span style="font-size:12px;">' + 'Are you sure you want to purchase this item?'.escapeHTML() + '<br>Amount: ' + '<span class="tw2gui_textfield"><span><input type="number" id="xsht_item_buy_amount" value="1" min="1" max="2147483647" style="width:75px" onchange="Trader.amountChanged()" onkeyup="Trader.amountChanged()"><span class="search_lable_span" style="display: none;">Amount</span></span></span>' + '<div id="xsht_total_price_desc" style="font-size:12px;">Total price: <span id="xsht_total_price">$ %buy_popup_price%</span></div>' +  '</span>';
+    Trader.buy_popup_xhtml = '<div class="bag_item float_left"><img src="%buy_img%" /></div>' + '<span class="item_popup_sell_value">' + 'Single Purchase price:'.escapeHTML() + '$ <span id="xsht_item_price">%buy_popup_price%</span></span><br />' + '<span style="font-size:12px;">' + 'Are you sure you want to purchase this item?'.escapeHTML() + '<br>Amount: ' + '<span class="tw2gui_textfield"><span><input type="number" id="xsht_item_buy_amount" value="1" min="1" max="2147483647" style="width:75px" onchange="Trader.amountChanged()" onkeyup="Trader.amountChanged()"><span class="search_lable_span" style="display: none;">Amount</span></span></span>' + '<div id="xsht_total_price_desc" style="font-size:12px;">Total price: <span id="xsht_total_price">$ %buy_popup_price%</span></div>' + '</span>';
     Trader.buyDialog = function(item_id) {
         var buy_popup;
         if ($('#buy_popup')) {
@@ -94,14 +90,14 @@ runScript(function() {
                 var totalAmount = $('#xsht_item_buy_amount').val();
                 progressBar = new west.gui.Progressbar(0, totalAmount);
                 Trader.initProgress(progressBar);
-                for(var i = 0; i < totalAmount; i++)
-                    Trader.buyItem(item);
+                for (var i = 0; i < totalAmount; i++)
+                    setTimeout(Trader.buyItem, i * 1000, item);
             }).addButton('no', function() {
                 Trader.cancelBuy();
             }).setModal(true, true).show();
         }
     };
-    
+
     Trader.buyItem = function(item) {
         item.getImgEl().css('opacity', '0.3');
         Ajax.remoteCall(Trader.types[Trader.type], 'buy', {
@@ -116,7 +112,7 @@ runScript(function() {
                 return new UserMessage(json.error, UserMessage.TYPE_ERROR).show();
             } else {
                 if (json.expressoffer) {
-                    if(progressBar.value == 1)
+                    if (progressBar.value == 1)
                         Premium.confirmUse(json.expressoffer + " " + Bag.getLastInvId(), 'Express delivery', "You aren\'t currently in this town. But this item can be delivered to you immediately for a few nuggets.", json.price);
                     buyStatusText = "You are not in the town!"
                     buyStatus = UserMessage.TYPE_ERROR;
@@ -135,14 +131,12 @@ runScript(function() {
         });
         Trader.cancelBuy();
     };
-    
-    Trader.updateTimer = function(){
-        var averageTime = (new Date().getTime() / 1000 - Trader.startTime) /progressBar.value;
-        var remainingTime = averageTime * (progressBar.maxValue-progressBar.value);
-        var minutes = parseInt( remainingTime / 60 ) % 60;
-        var seconds = Math.round(remainingTime % 60);
-        $("#xsht_load_screen #xsht_bar_timer").html(minutes+":"+ (seconds  < 10 ? "0" + seconds : seconds));
-    };
-  
 
+    Trader.updateTimer = function() {
+        var averageTime = (new Date().getTime() / 1000 - Trader.startTime) / progressBar.value;
+        var remainingTime = averageTime * (progressBar.maxValue - progressBar.value);
+        var minutes = parseInt(remainingTime / 60) % 60;
+        var seconds = Math.round(remainingTime % 60);
+        $("#xsht_load_screen #xsht_bar_timer").html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds));
+    };
 });
