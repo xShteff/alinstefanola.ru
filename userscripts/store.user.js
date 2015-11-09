@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         The West Multi-Purchase 
-// @version      0.01 
-// @description  public build 1
+// @version      0.01
+// @description  public build 2
 // @author       Alin "xShteff" Olaru
 // @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
@@ -52,7 +52,8 @@ runScript(function() {
             $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeIn();
         }
     }
-    var buyStatus = "All the products were bought.";
+    var buyStatusText = "All the products were bought.";
+    var buyStatus = UserMessage.TYPE_SUCCESS;
     Trader.initProgress = function(bar) {
     	$('#xsht_load_screen').html('<div id="xsht_load_screen"></div>');
     	var barContainer = $('<div></div>').attr('id', 'xsht_bar_container').append(bar.getMainDiv());
@@ -68,7 +69,7 @@ runScript(function() {
     	if(progressBar.value == progressBar.maxValue){
     		$('#xsht_load_screen').fadeOut();
     		if(progressBar.maxValue > 1)
-    			new UserMessage(buyStatus, UserMessage.TYPE_SUCCESS).show();
+    			new UserMessage(buyStatusText, buyStatus).show();
     	}
     }
 
@@ -107,18 +108,21 @@ runScript(function() {
             last_inv_id: Bag.getLastInvId()
         }, function(json) {
             if (json.error) {
-                return new UserMessage(json.error, UserMessage.TYPE_ERROR).show();
-                buyStatus = json.error;
+                buyStatusText = json.error;
+                buyStatus = UserMessage.TYPE_ERROR;
                 Trader.increaseProgress();
+                return new UserMessage(json.error, UserMessage.TYPE_ERROR).show();
             } else {
                 if (json.expressoffer) {
                     if(progressBar.value == 1)
                         Premium.confirmUse(json.expressoffer + " " + Bag.getLastInvId(), 'Express delivery', "You aren\'t currently in this town. But this item can be delivered to you immediately for a few nuggets.", json.price);
-                	buyStatus = "You are not in the town!"
+                	buyStatusText = "You are not in the town!"
+                    buyStatus = UserMessage.TYPE_ERROR;
                     Trader.increaseProgress();
                 } else {
                     Trader.handleBuyResponse(json);
-                    buyStatus = "All the products were bought.";
+                    buyStatusText = "All the products were bought.";
+                    buyStatus = UserMessage.TYPE_SUCCESS;
                     if (Trader.type == "item_trader") {
                         item.divMain.remove();
                     }
