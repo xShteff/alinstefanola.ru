@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         The West Multi-Purchase 
 // @version      0.01
-// @description  public build 2
-// @author       Alin "xShteff" Olaru
+// @description  public build 3
+// @author       Alin "xShteff" Olaru, Slygoxx
 // @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
 // @downloadURL  https://xshteff.github.io/userscripts/store.user.js
@@ -35,17 +35,17 @@ runScript(function() {
     $('body').append(loadingScreen);
     var progressBar = new west.gui.Progressbar(0, 100);
     Trader.amountChanged = function() {
-		var totalPrice = $('#xsht_item_buy_amount').val() * $('#xsht_item_price').text();
-		$('#xsht_total_price').text('$ ' + totalPrice);
-		if(totalPrice > Character.deposit + Character.money){
-			$('#xsht_total_price').css({
+        var totalPrice = $('#xsht_item_buy_amount').val() * $('#xsht_item_price').text();
+        $('#xsht_total_price').text('$ ' + totalPrice);
+        if(totalPrice > Character.deposit + Character.money){
+            $('#xsht_total_price').css({
                 'color' : 'red',
                 'font-weight' : 'bold'
             });
             $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeOut();
         }
-		else{
-			$('#xsht_total_price').css({
+        else{
+            $('#xsht_total_price').css({
                 'color' : 'black',
                 'font-weight' : 'normal'
             });
@@ -55,22 +55,24 @@ runScript(function() {
     var buyStatusText = "All the products were bought.";
     var buyStatus = UserMessage.TYPE_SUCCESS;
     Trader.initProgress = function(bar) {
-    	$('#xsht_load_screen').html('<div id="xsht_load_screen"></div>');
-    	var barContainer = $('<div></div>').attr('id', 'xsht_bar_container').append(bar.getMainDiv());
-    	$('#xsht_load_screen').append(barContainer);
-    	$('#xsht_load_screen').fadeIn();
-    	if(bar.maxValue > 1)
-    		new UserMessage("Started buying " + bar.maxValue + " products! Please wait until the process is completed.", UserMessage.TYPE_ERROR).show();
-
+        $('#xsht_load_screen').html('<div id="xsht_load_screen"></div>');
+        var barContainer = $('<div></div>').attr('id', 'xsht_bar_container').append(bar.getMainDiv());
+        $('#xsht_load_screen').append(barContainer);
+        $('#xsht_load_screen').fadeIn();
+        if(bar.maxValue > 1)
+            new UserMessage("Started buying " + bar.maxValue + " products! Please wait until the process is completed.", UserMessage.TYPE_ERROR).show();
+        $('#xsht_load_screen .tw2gui_progressbar_progress').append("<span id='xsht_bar_timer' style=\"z-index: 2; right: 5px; top: 0; bottom: 0; position: absolute; color: white; font-size: 12px;line-height: 19px;text-shadow: black 1px 1px 1px;\">1:00</span>");
+        Trader.startTime = new Date().getTime() / 1000;
     }
 
     Trader.increaseProgress = function() {
-    	progressBar.increase(1);
-    	if(progressBar.value == progressBar.maxValue){
-    		$('#xsht_load_screen').fadeOut();
-    		if(progressBar.maxValue > 1)
-    			new UserMessage(buyStatusText, buyStatus).show();
-    	}
+        progressBar.increase(1);
+        if(progressBar.value == progressBar.maxValue){
+            $('#xsht_load_screen').fadeOut();
+            if(progressBar.maxValue > 1)
+                new UserMessage(buyStatusText, buyStatus).show();
+        }
+        Trader.updateTimer();
     }
 
     Trader.buy_popup_xhtml = '<div class="bag_item float_left"><img src="%buy_img%" /></div>' + '<span class="item_popup_sell_value">' + 'Single Purchase price:'.escapeHTML() + '$ <span id="xsht_item_price">%buy_popup_price%</span></span><br />' + '<span style="font-size:12px;">' + 'Are you sure you want to purchase this item?'.escapeHTML() + '<br>Amount: ' + '<span class="tw2gui_textfield"><span><input type="number" id="xsht_item_buy_amount" value="1" min="1" max="2147483647" style="width:75px" onchange="Trader.amountChanged()" onkeyup="Trader.amountChanged()"><span class="search_lable_span" style="display: none;">Amount</span></span></span>' + '<div id="xsht_total_price_desc" style="font-size:12px;">Total price: <span id="xsht_total_price">$ %buy_popup_price%</span></div>' +  '</span>';
@@ -116,7 +118,7 @@ runScript(function() {
                 if (json.expressoffer) {
                     if(progressBar.value == 1)
                         Premium.confirmUse(json.expressoffer + " " + Bag.getLastInvId(), 'Express delivery', "You aren\'t currently in this town. But this item can be delivered to you immediately for a few nuggets.", json.price);
-                	buyStatusText = "You are not in the town!"
+                    buyStatusText = "You are not in the town!"
                     buyStatus = UserMessage.TYPE_ERROR;
                     Trader.increaseProgress();
                 } else {
@@ -132,6 +134,14 @@ runScript(function() {
             Trader.increaseProgress();
         });
         Trader.cancelBuy();
+    };
+    
+    Trader.updateTimer = function(){
+        var averageTime = (new Date().getTime() / 1000 - Trader.startTime) /progressBar.value;
+        var remainingTime = averageTime * (progressBar.maxValue-progressBar.value);
+        var minutes = parseInt( remainingTime / 60 ) % 60;
+        var seconds = Math.round(remainingTime % 60);
+        $("#xsht_load_screen #xsht_bar_timer").html(minutes+":"+ (seconds  < 10 ? "0" + seconds : seconds));
     };
   
 
