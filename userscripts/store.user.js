@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         The West Multi-Purchase 
 // @version      0.01
-// @description  public build 4
+// @description  public build 5
 // @author       Alin "xShteff" Olaru, Slygoxx
 // @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
@@ -91,7 +91,10 @@ runScript(function() {
                 progressBar = new west.gui.Progressbar(0, totalAmount);
                 Trader.initProgress(progressBar);
                 for (var i = 0; i < totalAmount; i++)
-                    setTimeout(Trader.buyItem, i * 1000, item);
+                    if($('#xsht_item_buy_amount').val() > 27)
+                        setTimeout(Trader.buyItem, i * 1000, item);
+                    else
+                        Trader.buyItem(item);
             }).addButton('no', function() {
                 Trader.cancelBuy();
             }).setModal(true, true).show();
