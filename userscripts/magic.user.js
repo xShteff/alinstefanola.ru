@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         The West Magic
-// @version      0.04
+// @version      0.05
 // @description  Because magic is awesome!
 // @author       Alin "xShteff" Olaru
 // @website      https://xshteff.github.io
@@ -562,7 +562,7 @@ runScript(function() {
                     return new UserMessage(json.error, UserMessage.TYPE_ERROR).show();
                 } else {
                     if (json.expressoffer) {
-                        if (progressBar.value == 1)
+                        if (progressBar.maxValue == 1)
                             Premium.confirmUse(json.expressoffer + " " + Bag.getLastInvId(), 'Express delivery', "You aren\'t currently in this town. But this item can be delivered to you immediately for a few nuggets.", json.price);
                         buyStatusText = "You are not in the town!"
                         buyStatus = UserMessage.TYPE_ERROR;
