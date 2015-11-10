@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         The West Magic
-// @version      0.03
+// @version      0.04
 // @description  Because magic is awesome!
-// @author       Allen "xShteff" McPotter
-// @website      http://allenmcpotter.me
+// @author       Alin "xShteff" Olaru
+// @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
-// @downloadURL  http://allenmcpotter.me/userscript/magic.user.js
-// @updateURL    http://allenmcpotter.me/userscript/magic.user.js
+// @downloadURL  https://xshteff.github.io/userscripts/magic.user.js
+// @updateURL    https://xshteff.github.io/userscripts/magic.user.js
 // ==/UserScript==
 
 /*
@@ -17,27 +17,27 @@
 
 var scriptIcon = function(iconID, iconTitle, iconURL, iconEvent) {
     var icon = $('<div></div>').attr({
-            'title': iconTitle,
-            'class': 'menulink'
-        }).css({
-            'background': 'url(' + iconURL + ')',
-            'background-position': '0px 0px'
-        }).mouseleave(function() {
-            $(this).css("background-position", "0px 0px");
-        }).mouseenter(function(e) {
-            $(this).css("background-position", "25px 0px");
-        }).click(function() {
-            iconEvent;
-        });
+        'title': iconTitle,
+        'class': 'menulink'
+    }).css({
+        'background': 'url(' + iconURL + ')',
+        'background-position': '0px 0px'
+    }).mouseleave(function() {
+        $(this).css("background-position", "0px 0px");
+    }).mouseenter(function(e) {
+        $(this).css("background-position", "25px 0px");
+    }).click(function() {
+        iconEvent;
+    });
 
-        var fix = $('<div></div>').attr({
-            'class': 'menucontainer_bottom'
-        }); /* Thanks  Sly! */
+    var fix = $('<div></div>').attr({
+        'class': 'menucontainer_bottom'
+    }); /* Thanks  Sly! */
 
-        jQuery("#ui_menubar .ui_menucontainer :last").after($('<div></div>').attr({
-            'class': 'ui_menucontainer',
-            'id': iconID
-        }).append(icon).append(fix));
+    jQuery("#ui_menubar .ui_menucontainer :last").after($('<div></div>').attr({
+        'class': 'ui_menucontainer',
+        'id': iconID
+    }).append(icon).append(fix));
 }
 
 function runScript(source) {
@@ -58,9 +58,10 @@ runScript(function() {
         scriptInfo += "<b>Notifications: </b>" + localStorage.getItem('xsht_noti_status') + "<br>";
         scriptInfo += "<b>Veteran Point Counter: </b>" + localStorage.getItem('xsht_vet_status') + "<br>";
         scriptInfo += "<b>Task Killer: </b>" + localStorage.getItem('xsht_killer_status') + "<br>";
-        scriptInfo += "<b>Jobs Window Rework: </b>" + localStorage.getItem('xsht_jobs_status') + "<br>";
+        scriptInfo += "<b>Jobs Window Redesign: </b>" + localStorage.getItem('xsht_jobs_status') + "<br>";
+        scriptInfo += "<b>Multiple store purchase: </b>" + localStorage.getItem('xsht_buy_status') + "<br>";
         window.scriptyscript = {
-            script: TheWestApi.register('ohohohitsmagic', 'The West Magic', '2.1', Game.version.toString(), 'xShteff', 'http://allenmcpotter.me/userscript'),
+            script: TheWestApi.register('ohohohitsmagic', 'The West Magic', '2.1', Game.version.toString(), 'xShteff', 'https://xshteff.github.io'),
             setGui: function() {
                 this.script.setGui(scriptInfo);
             },
@@ -91,6 +92,9 @@ runScript(function() {
             },
             four: {
                 window: "<div class='magicwindow-four'></div>"
+            },
+            five: {
+                window: "<div class='magicwindow-five'></div>"
             }
         };
 
@@ -103,7 +107,7 @@ runScript(function() {
             var tabclick = function(win, id) {
                 MagicWindow.showTab(id);
             }
-            MagicWindow.window = wman.open("magicwindow", "Allen Test").setMiniTitle("Notifications").addTab(tabIcon('https://westzzs.innogamescdn.com/images/interface/chat/chat.gif'), "one", tabclick).addTab(tabIcon('http://puu.sh/gdsek/93e29796d4.png'), "two", tabclick).addTab(tabIcon('http://puu.sh/gdsnY/ecb27d9300.png'), "three", tabclick).addTab(tabIcon('https://westzzs.innogamescdn.com/images/icons/hammer.png'), "four", tabclick).appendToContentPane(MagicWindow.one.window).appendToContentPane(MagicWindow.two.window).appendToContentPane(MagicWindow.three.window).appendToContentPane(MagicWindow.four.window).setSize(350, 300);
+            MagicWindow.window = wman.open("magicwindow", "Allen Test").setMiniTitle("Notifications").addTab(tabIcon('https://westzzs.innogamescdn.com/images/interface/chat/chat.gif'), "one", tabclick).addTab(tabIcon('http://puu.sh/gdsek/93e29796d4.png'), "two", tabclick).addTab(tabIcon('http://puu.sh/gdsnY/ecb27d9300.png'), "three", tabclick).addTab(tabIcon('https://westzzs.innogamescdn.com/images/icons/hammer.png'), "four", tabclick).addTab(tabIcon('http://puu.sh/lfvxl/187895d35c.png'), "five", tabclick).appendToContentPane(MagicWindow.one.window).appendToContentPane(MagicWindow.two.window).appendToContentPane(MagicWindow.three.window).appendToContentPane(MagicWindow.four.window).appendToContentPane(MagicWindow.five.window).setSize(375, 320);
             this.showTab(tab);
         };
 
@@ -134,6 +138,9 @@ runScript(function() {
                 case "four":
                     MagicWindow.four.init();
                     break;
+                case "five":
+                    MagicWindow.five.init();
+                    break;
             }
         };
 
@@ -158,10 +165,10 @@ runScript(function() {
             content += "</table>";
             $('.magicwindow-one').html(content).hide().fadeIn();
 
-            if(localStorage.getItem("xsht_noti_status") == "enabled")
+            if (localStorage.getItem("xsht_noti_status") == "enabled")
                 $('#xsht-toggle-noti').addClass('xshttoggleenabled');
             $('#xsht-toggle-noti').click(function() {
-                if($(this).hasClass('xshttoggleenabled')) {
+                if ($(this).hasClass('xshttoggleenabled')) {
                     new UserMessage('Notifications are now disabled').show();
                     $(this).removeClass('xshttoggleenabled');
                     localStorage.setItem("xsht_noti_status", "disabled")
@@ -195,10 +202,10 @@ runScript(function() {
             content += "</table>";
             $('.magicwindow-two').html(content).hide().fadeIn();
 
-            if(localStorage.getItem("xsht_vet_status") == "enabled")
+            if (localStorage.getItem("xsht_vet_status") == "enabled")
                 $('#xsht-toggle-vet').addClass('xshttoggleenabled');
             $('#xsht-toggle-vet').click(function() {
-                if($(this).hasClass('xshttoggleenabled')) {
+                if ($(this).hasClass('xshttoggleenabled')) {
                     new UserMessage('The Veteran Point Counter is now disabled').show();
                     $(this).removeClass('xshttoggleenabled');
                     localStorage.setItem("xsht_vet_status", "disabled")
@@ -230,11 +237,11 @@ runScript(function() {
             content += "</tr>";
             content += "</table>";
             $('.magicwindow-three').html(content).hide().fadeIn();
-            
-            if(localStorage.getItem("xsht_killer_status") == "enabled")
+
+            if (localStorage.getItem("xsht_killer_status") == "enabled")
                 $('#xsht-toggle-killer').addClass('xshttoggleenabled');
             $('#xsht-toggle-killer').click(function() {
-                if($(this).hasClass('xshttoggleenabled')) {
+                if ($(this).hasClass('xshttoggleenabled')) {
                     new UserMessage('Task Killer is now disabled').show();
                     $(this).removeClass('xshttoggleenabled');
                     localStorage.setItem("xsht_killer_status", "disabled")
@@ -247,8 +254,8 @@ runScript(function() {
         }
 
         MagicWindow.four.init = function() {
-            MagicWindow.window.setTitle("Job Window Rework");
-            MagicWindow.window.setMiniTitle("Magic Window - Job Window Rework");
+            MagicWindow.window.setTitle("Job Window Redesign");
+            MagicWindow.window.setMiniTitle("Magic Window - Job Window Redesign");
             content = "";
             content += "<table>";
             content += "<tr> ";
@@ -266,11 +273,11 @@ runScript(function() {
             content += "</tr>";
             content += "</table>";
             $('.magicwindow-four').html(content).hide().fadeIn();
-            
-            if(localStorage.getItem("xsht_jobs_status") == "enabled")
+
+            if (localStorage.getItem("xsht_jobs_status") == "enabled")
                 $('#xsht-toggle-jobs').addClass('xshttoggleenabled');
             $('#xsht-toggle-jobs').click(function() {
-                if($(this).hasClass('xshttoggleenabled')) {
+                if ($(this).hasClass('xshttoggleenabled')) {
                     new UserMessage('Job Window modifications are now disabled').show();
                     $(this).removeClass('xshttoggleenabled');
                     localStorage.setItem("xsht_jobs_status", "disabled")
@@ -278,6 +285,42 @@ runScript(function() {
                     new UserMessage('Job Window modifications are now enabled').show();
                     $(this).addClass('xshttoggleenabled');
                     localStorage.setItem("xsht_jobs_status", "enabled")
+                }
+            });
+        }
+
+        MagicWindow.five.init = function() {
+            MagicWindow.window.setTitle("Multi Purchase");
+            MagicWindow.window.setMiniTitle("Magic Window - Multi Purchase");
+            content = "";
+            content += "<table>";
+            content += "<tr> ";
+            content += "<td><b>Toggle: </b></td>";
+            content += "<td> <div id='xsht-toggle-buy' class='xshttoggledisabled'></td>";
+            content += "</tr>";
+            content += "<tr> ";
+            content += "<td><b>Release Date:</b> </td>";
+            content += "<td> 10th November 2015 </td>";
+            content += "</tr>";
+            content += "<tr> ";
+            content += "<td colspan='2'><br><br><i>A simple userscript that will allow you to purchase multiple items from the store! Amounts bigger than 27 will suffer a delay, in order to avoid flood protection.</i> <br> Kudos to <a href='https://forum.the-west.net/member.php?u=11236' target='_blank'>Slygoxx</a> for helping. <br></td>";
+            content += "</tr><tr>";
+            content += "<td colspan='2'><font color='red'><b>Please reload the game in order to apply the changes!</b></font></td>";
+            content += "</tr>";
+            content += "</table>";
+            $('.magicwindow-five').html(content).hide().fadeIn();
+
+            if (localStorage.getItem("xsht_buy_status") == "enabled")
+                $('#xsht-toggle-buy').addClass('xshttoggleenabled');
+            $('#xsht-toggle-buy').click(function() {
+                if ($(this).hasClass('xshttoggleenabled')) {
+                    new UserMessage('Multi purchases are now disabled').show();
+                    $(this).removeClass('xshttoggleenabled');
+                    localStorage.setItem("xsht_buy_status", "disabled")
+                } else {
+                    new UserMessage('Multi purchases are now enabled').show();
+                    $(this).addClass('xshttoggleenabled');
+                    localStorage.setItem("xsht_buy_status", "enabled")
                 }
             });
         }
@@ -342,7 +385,7 @@ runScript(function() {
         if (Game.locale == 'ro_RO') {
             var description = '<b>Puncte de Veteran</b> <br> Primești Puncte de Veteran participând la Aventuri! <br> Punctele de Veteran pot fi folosite în Magazinul Union Pacific';
         } else if (Game.locale == 'de_DE') {
-            /*Thank you, Tom Robert, for the translation! */ 
+            /*Thank you, Tom Robert, for the translation! */
             var description = '<b>Veteranenpunkte</b><br>Man kann bei einer Runde Abenteuer bis zu 250 Veteranenpunkte verdienen!<br>Diese können dann im Union Pacific Shop für Käufe eingesetzt werden.';
         } else {
             var description = '<b>Veteran Points</b> <br>You earn Veteran Points by fighting on Adventures! <br>Veteran points can be spent in the Union Pacific Store.';
@@ -401,15 +444,15 @@ runScript(function() {
         }).css({
             'background': 'url(http://puu.sh/bKC6c/ffbdf2ca37.jpg)',
             'background-position': '0px 0px'
-        }).mouseleave(function () {
+        }).mouseleave(function() {
             $(this).css("background-position", "0px 0px");
-        }).mouseenter(function (e) {
+        }).mouseenter(function(e) {
             $(this).css("background-position", "25px 0px");
-        }).click(function () {
-        var n = TaskQueue.queue.length;
-        for (i = 0; i < n; i++) {
-            TaskQueue.cancel(i);
-        }
+        }).click(function() {
+            var n = TaskQueue.queue.length;
+            for (i = 0; i < n; i++) {
+                TaskQueue.cancel(i);
+            }
         });
 
         var fix = $('<div></div>').attr({
@@ -422,15 +465,134 @@ runScript(function() {
         }).append(icon).append(fix));
 
         jQuery("#taskKiller").css({
-            "position" : "relative",
-            "right" : "125px",
-            "top" : "30px",
-            "z-index" : "-1"
+            "position": "relative",
+            "right": "125px",
+            "top": "30px",
+            "z-index": "-1"
         });
     }
 
+    function MultiPurchase() {
+        var styling = "<style>#xsht_load_screen { position:absolute; top: 0px; left: 0px; height:100%; width:100%; z-index:100; display:none; } </style>";
+        $('head').append(styling);
+        var loadingScreen = $('<div></div>').attr('id', 'xsht_load_screen');
+        $('body').append(loadingScreen);
+        var progressBar = new west.gui.Progressbar(0, 100);
+        Trader.amountChanged = function() {
+            var totalPrice = $('#xsht_item_buy_amount').val() * $('#xsht_item_price').text();
+            $('#xsht_total_price').text('$ ' + totalPrice);
+            if (totalPrice > Character.deposit + Character.money) {
+                $('#xsht_total_price').css({
+                    'color': 'red',
+                    'font-weight': 'bold'
+                });
+                $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeOut();
+            } else {
+                $('#xsht_total_price').css({
+                    'color': 'black',
+                    'font-weight': 'normal'
+                });
+                $('.tw2gui_dialog_actions .tw2gui_button .textart_title:contains("Yes")').parent().fadeIn();
+            }
+        }
+        var buyStatusText = "All the products were bought.";
+        var buyStatus = UserMessage.TYPE_SUCCESS;
+        Trader.initProgress = function(bar) {
+            $('#xsht_load_screen').html('<div id="xsht_load_screen"></div>');
+            var barContainer = $('<div></div>').attr('id', 'xsht_bar_container').append(bar.getMainDiv());
+            $('#xsht_load_screen').append(barContainer);
+            $('#xsht_load_screen').fadeIn();
+            if (bar.maxValue > 1)
+                new UserMessage("Started buying " + bar.maxValue + " products! Please wait until the process is completed.", UserMessage.TYPE_ERROR).show();
+            $('#xsht_load_screen .tw2gui_progressbar_progress').append("<span id='xsht_bar_timer' style=\"z-index: 2; right: 5px; top: 0; bottom: 0; position: absolute; color: white; font-size: 12px;line-height: 19px;text-shadow: black 1px 1px 1px;\">1:00</span>");
+            Trader.startTime = new Date().getTime() / 1000;
+        }
+
+        Trader.increaseProgress = function() {
+            progressBar.increase(1);
+            if (progressBar.value == progressBar.maxValue) {
+                $('#xsht_load_screen').fadeOut();
+                if (progressBar.maxValue > 1)
+                    new UserMessage(buyStatusText, buyStatus).show();
+            }
+            Trader.updateTimer();
+        }
+
+        Trader.buy_popup_xhtml = '<div class="bag_item float_left"><img src="%buy_img%" /></div>' + '<span class="item_popup_sell_value">' + 'Single Purchase price:'.escapeHTML() + '$ <span id="xsht_item_price">%buy_popup_price%</span></span><br />' + '<span style="font-size:12px;">' + 'Are you sure you want to purchase this item?'.escapeHTML() + '<br>Amount: ' + '<span class="tw2gui_textfield"><span><input type="number" id="xsht_item_buy_amount" value="1" min="1" max="2147483647" style="width:75px" onchange="Trader.amountChanged()" onkeyup="Trader.amountChanged()"><span class="search_lable_span" style="display: none;">Amount</span></span></span>' + '<div id="xsht_total_price_desc" style="font-size:12px;">Total price: <span id="xsht_total_price">$ %buy_popup_price%</span></div>' + '</span>';
+        Trader.buyDialog = function(item_id) {
+            var buy_popup;
+            if ($('#buy_popup')) {
+                $('#buy_popup').remove();
+            }
+            buy_popup = $('<div id="buy_popup" style="opacity: 0.9;"></div>');
+            var item = Trader.getItemByItemId(item_id);
+            if (item) {
+                var html = Trader.buy_popup_xhtml.fillValues({
+                    buy_img: item.getImgEl()[0].src,
+                    buy_popup_price: item.getBuyPrice(),
+                    buy_popup_item_name: item.getName()
+                });
+                var coords = $(Trader.window.divMain).position();
+                new west.gui.Dialog(item.getName(), html).setX(coords.left).setY(coords.top).addButton('yes', function() {
+                    var totalAmount = $('#xsht_item_buy_amount').val();
+                    progressBar = new west.gui.Progressbar(0, totalAmount);
+                    Trader.initProgress(progressBar);
+                    for (var i = 0; i < totalAmount; i++)
+                        if ($('#xsht_item_buy_amount').val() > 27)
+                            setTimeout(Trader.buyItem, i * 1000, item);
+                        else
+                            Trader.buyItem(item);
+                }).addButton('no', function() {
+                    Trader.cancelBuy();
+                }).setModal(true, true).show();
+            }
+        };
+
+        Trader.buyItem = function(item) {
+            item.getImgEl().css('opacity', '0.3');
+            Ajax.remoteCall(Trader.types[Trader.type], 'buy', {
+                item_id: item.obj.item_id,
+                town_id: Trader.id,
+                last_inv_id: Bag.getLastInvId()
+            }, function(json) {
+                if (json.error) {
+                    buyStatusText = json.error;
+                    buyStatus = UserMessage.TYPE_ERROR;
+                    Trader.increaseProgress();
+                    return new UserMessage(json.error, UserMessage.TYPE_ERROR).show();
+                } else {
+                    if (json.expressoffer) {
+                        if (progressBar.value == 1)
+                            Premium.confirmUse(json.expressoffer + " " + Bag.getLastInvId(), 'Express delivery', "You aren\'t currently in this town. But this item can be delivered to you immediately for a few nuggets.", json.price);
+                        buyStatusText = "You are not in the town!"
+                        buyStatus = UserMessage.TYPE_ERROR;
+                        Trader.increaseProgress();
+                    } else {
+                        Trader.handleBuyResponse(json);
+                        buyStatusText = "All the products were bought.";
+                        buyStatus = UserMessage.TYPE_SUCCESS;
+                        if (Trader.type == "item_trader") {
+                            item.divMain.remove();
+                        }
+                    }
+                }
+                item.getImgEl().css('opacity', '1.0');
+                Trader.increaseProgress();
+            });
+            Trader.cancelBuy();
+        };
+
+        Trader.updateTimer = function() {
+            var averageTime = (new Date().getTime() / 1000 - Trader.startTime) / progressBar.value;
+            var remainingTime = averageTime * (progressBar.maxValue - progressBar.value);
+            var minutes = parseInt(remainingTime / 60) % 60;
+            var seconds = Math.round(remainingTime % 60);
+            $("#xsht_load_screen #xsht_bar_timer").html(minutes + ":" + (seconds < 10 ? "0" + seconds : seconds));
+        };
+    }
+
     function NotificationsGo() {
-            if (Game.locale == 'ro_RO') {
+        if (Game.locale == 'ro_RO') {
             IconTitle = "Activează notificările!";
             ErrorNotSupported = "Îmi pare rău, notificările nu sunt suportate!";
             ErrorDisabled = "Notificările sunt dezactivate";
@@ -508,13 +670,14 @@ runScript(function() {
     registerToWestApi();
     magicWindow();
     scriptButton('http://puu.sh/gbV7X/4703da6942.png', 'Magic Menu!');
-    if(localStorage.getItem('xsht_jobs_status') == 'enabled')
+    if (localStorage.getItem('xsht_jobs_status') == 'enabled')
         jobRework();
-    if(localStorage.getItem('xsht_vet_status') == 'enabled')
+    if (localStorage.getItem('xsht_vet_status') == 'enabled')
         vetPointCounter();
-    if(localStorage.getItem('xsht_killer_status') == 'enabled')
+    if (localStorage.getItem('xsht_killer_status') == 'enabled')
         taskKiller();
-    if(localStorage.getItem('xsht_noti_status') == 'enabled')
+    if (localStorage.getItem('xsht_noti_status') == 'enabled')
         NotificationsGo();
-
+    if (localStorage.getItem('xsht_buy_status') == 'enabled')
+        MultiPurchase();
 });
