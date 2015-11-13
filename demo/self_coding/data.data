@@ -1,0 +1,41 @@
+/* 
+* This is a self-coding webpage!
+* I did this cos I was bored.
+* I maybe stole this idea from someone else.
+* Sorry. Please don't sue me! :(
+*/
+
+/* Anyway. I'll start by animating everything! */
+
+* { transition: all 1s; } 
+
+/* That didn't do much. Or did it? This is how it would've looked if it did nothing: */
+
+<span class="selector">#thisDoes</span> { <span class="key">absolutely</span>: <span class="value">nothing</span>; <span class="key">trust</span>: <span class="value">me</span>; <span class="key">my</span>: <span class="value">friend</span>; }
+
+/* This background is kinda boring. Let's change it! */
+
+body { background: #515658; color: rgb(255, 255, 255); } 
+
+/* I told you it'll animate everything! Now, let's set up a workplace for ourselves, shall we? */
+
+#magicContainer { background: rgb(32, 32, 32); max-width:850px; margin-left:auto; margin-right: auto; } 
+#magic { width: 100%; height: 550px; overflow-y: scroll; } 
+
+/* Let's fancify the comments a bit. */
+
+.comment { color: #857F6B; font-style: italic; }
+
+/*
+* Remember when I said that line 14 does nothing? 
+* I lied. Sorry. I hope you like Monokai.
+*/
+.selector { color: #F92672; }
+.key { color: #33709B; }
+.value { color: #AE81FF; }
+
+/* 
+* That's all for now. More stuff to come soon!
+* Oh, yeah. You can now edit this workplace, and make it however you like! :)
+* Try not to break it!
+*/
