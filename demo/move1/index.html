@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Shenanigans</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="test.css">
+</head>
+
+<body onkeypress="keyPressed(event)">
+    <div id="map"></div>
+    <div class="testplayer1"> </div>
+    <script>
+        var map = [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+
+        function refreshMap() {
+            $('#map').html('<div id="map"></div>');
+            for (var i = 0; i < map.length; i++) {
+                for (var y = 0; y < map[i].length; y++) {
+                    var entity = map[i][y];
+                    switch (entity) {
+                        case 0:
+                            block = "empty";
+                            break;
+                        case 1:
+                            block = "wall";
+                            break;
+                        case 2:
+                            block = "player1";
+                            break;
+                        case 3:
+                            block = "player2";
+                            break;
+                    }
+                    if (y == 0)
+                        $('#map').append('<div class="' + block + ' end"> </div>');
+                    else
+                        $('#map').append('<div class="' + block + '"> </div>');
+                }
+            }
+        }
+        var currentPositionP1 = [-1, -1];
+        var posXP1 = currentPositionP1[0];
+        var posYP1 = currentPositionP1[1];
+
+        var currentPositionP2 = [-1, -1];
+        var posXP2 = currentPositionP2[0];
+        var posYP2 = currentPositionP2[1];
+
+        var directionP1 = "down";
+
+        function setPlayer1View(direction) {
+            var wWidth = $(window).width();
+            var directionID1 = -1;
+            switch (direction) {
+                case "down":
+                    directionID1 = 0;
+                    break;
+                case "up":
+                    directionID1 = 3;
+                    break;
+                case "left":
+                    directionID1 = 2;
+                    break;
+                case "right":
+                    directionID1 = 1;
+                    break;
+            }
+            $('.testplayer1').css('background-position', wWidth / 50 * directionID1);
+            directionP1 = direction;
+        }
+        var directionP2 = "down";
+
+        function setPlayer2View(direction) {
+            var wWidth = $(window).width();
+            var directionID2 = -1;
+            switch (direction) {
+                case "down":
+                    directionID2 = 0;
+                    break;
+                case "up":
+                    directionID2 = 3;
+                    break;
+                case "left":
+                    directionID2 = 2;
+                    break;
+                case "right":
+                    directionID2 = 1;
+                    break;
+            }
+            $('.player2').css('background-position', wWidth / 50 * directionID2);
+            directionP2 = direction;
+        }
+
+        function setPlayer1(x, y) {
+            if (posXP1 != -1)
+                map[posXP1][posYP1] = 0;
+            map[x][y] = 2;
+            refreshMap();
+            currentPositionP1 = [x, y];
+            posXP1 = currentPositionP1[0];
+            posYP1 = currentPositionP1[1];
+            mapWidth();
+        }
+
+        function setPlayer2(x, y) {
+            if (posXP2 != -1)
+                map[posXP2][posYP2] = 0;
+            map[x][y] = 3;
+            refreshMap();
+            currentPositionP2 = [x, y];
+            posXP2 = currentPositionP2[0];
+            posYP2 = currentPositionP2[1];
+            mapWidth();
+        }
+
+
+        function testSetPlayer1(x, y) {
+            if (posXP1 != -1)
+                map[posXP1][posYP1] = 0;
+            var wWidth = $(window).width();
+            $('.testplayer1').css({
+                'top': wWidth / 50 * x,
+                'left': wWidth / 50 * y
+            })
+            currentPositionP1 = [x, y];
+            posXP1 = currentPositionP1[0];
+            posYP1 = currentPositionP1[1];
+            mapWidth();
+        }
+
+        function keyPressed(event) {
+            var key = event.keyCode || event.which;
+            var keychar = String.fromCharCode(key);
+            switch (key) {
+                //Player 1 (WASD)
+                case 97: //LEFT
+                    if (map[posXP1][posYP1 - 1] == 0)
+                        testSetPlayer1(posXP1, posYP1 - 1);
+                    else
+                        console.log("Wall!");
+                    setPlayer1View("left");
+                    break;
+                case 119: //UP
+                    if (map[posXP1 - 1][posYP1] == 0)
+                        testSetPlayer1(posXP1 - 1, posYP1);
+                    else
+                        console.log("Wall!");
+                    setPlayer1View("up");
+                    break;
+                case 115: //DOWN
+                    if (map[posXP1 + 1][posYP1] == 0)
+                        testSetPlayer1(posXP1 + 1, posYP1);
+                    else
+                        console.log("Wall!");
+                    setPlayer1View("down");
+                    break;
+                case 100: //RIGHT
+                    if (map[posXP1][posYP1 + 1] == 0)
+                        testSetPlayer1(posXP1, posYP1 + 1);
+                    else
+                        console.log("Wall!");
+                    setPlayer1View("right");
+                    break;
+
+                    //Player 2 (IJKL)
+                case 106: //LEFT
+                    if (map[posXP2][posYP2 - 1] == 0) {
+                        setPlayer2(posXP2, posYP2 - 1);
+                        console.log("yay");
+                    } else {
+                        console.log("Wall!");
+                    }
+                    setPlayer2View("left");
+                    break;
+                case 105: //UP
+                    if (map[posXP2 - 1][posYP2] == 0)
+                        setPlayer2(posXP2 - 1, posYP2);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("up");
+                    break;
+                case 107: //DOWN
+                    if (map[posXP2 + 1][posYP2] == 0)
+                        setPlayer2(posXP2 + 1, posYP2);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("down");
+                    break;
+                case 108: //RIGHT
+                    if (map[posXP2][posYP2 + 1] == 0)
+                        setPlayer2(posXP2, posYP2 + 1);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("right");
+                    break;
+
+                    //Player 2 (Numpad)
+                case 52: //LEFT
+                    if (map[posXP2][posYP2 - 1] == 0) {
+                        setPlayer2(posXP2, posYP2 - 1);
+                        console.log("yay");
+                    } else {
+                        console.log("Wall!");
+                    }
+                    setPlayer2View("left");
+                    break;
+                case 56: //UP
+                    if (map[posXP2 - 1][posYP2] == 0)
+                        setPlayer2(posXP2 - 1, posYP2);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("up");
+                    break;
+                case 53: //DOWN
+                    if (map[posXP2 + 1][posYP2] == 0)
+                        setPlayer2(posXP2 + 1, posYP2);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("down");
+                    break;
+                case 54: //RIGHT
+                    if (map[posXP2][posYP2 + 1] == 0)
+                        setPlayer2(posXP2, posYP2 + 1);
+                    else
+                        console.log("Wall!");
+                    setPlayer2View("right");
+                    break;
+            }
+        }
+
+        function mapWidth() {
+            var roundWidth = $(window).width();
+            //  var roundWidth = Math.floor(wwidth / 10) * 10;
+            $('.wall').css({
+                'width': roundWidth / 50,
+                'height': roundWidth / 50
+            });
+            $('.player1').css({
+                'width': roundWidth / 50,
+                'height': roundWidth / 50,
+            }).attr('title', 'Player 1');
+            $('.player2').css({
+                'width': roundWidth / 50,
+                'height': roundWidth / 50
+            }).attr('title', 'Player 2');
+            $('.empty').css({
+                'width': roundWidth / 50,
+                'height': roundWidth / 50
+            });
+
+            $('.testplayer1').css({
+                'width': roundWidth / 50,
+                'height': roundWidth / 50
+            });
+            setPlayer1View(directionP1);
+            setPlayer2View(directionP2);
+        }
+        //setPlayer1(1, 1);
+
+        setPlayer2(10, 48);
+        refreshMap();
+        mapWidth();
+
+        testSetPlayer1(1, 1);
+
+        $(window).resize(function() {
+            mapWidth();
+        });
+    </script>
+</body>
+
+</html>

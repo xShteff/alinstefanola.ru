@@ -1,0 +1,62 @@
+* {
+	font-family: sans-serif;
+	margin:0;
+}
+#map {
+	
+}
+
+.controll {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.wall {
+/*	height:5vh;
+	width:5vh;*/
+	background-color: black;
+	float:left;
+	background-image:url(wall.png);
+	background-size:100%;
+}
+
+.empty {
+	/*height:5vh;
+	width:5vh;*/
+	background-color: lime;
+	float:left;
+	background-image:url(grass.png);
+	background-size:100%;
+}
+
+.player1 {
+	/*height:5vh;
+	width:5vh;
+	background-color: blue;*/
+	float:left;
+	background-image:url(player.jpg);
+	background-size:400%;
+}
+
+.testplayer1 {
+	background-image:url(player1.png);
+	background-size:400%;
+	position:fixed;
+	top:0px;
+	left:0px;
+	transition: top 1s, left 1s;
+}
+
+.player2 {
+	/*height:5vh;
+	width:5vh;
+	background-color: blue;*/
+	float:left;
+	background-image:url(player.jpg);
+	background-size:400%;
+}
+
+
+.wall.end {
+	clear:both;
+}
