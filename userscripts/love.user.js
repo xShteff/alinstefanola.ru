@@ -21,7 +21,7 @@ var loveModeOff;
 
 if (Game.locale == 'ro_RO') {
     loveModeText = "Modul dă dragoste!";
-    loveModeOn = "Modul dă dragste fo\' activat!";
+    loveModeOn = "Modul dă dragste fo\' activat! Te iubesc, The West!";
     loveModeOff = "Modul dă dragste fo\' dezactivat!";
 } else {
     loveModeText = "Toggle love mode!";
