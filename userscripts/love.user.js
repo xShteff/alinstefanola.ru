@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         We love The-West!
 // @version      0.02
-// @description  Because magic it's true!
+// @description  Be the best, and play The West!
 // @author       Alin "xShteff" Olaru
 // @website      https://xshteff.github.io
 // @include      *.the-west.*/game.php*
