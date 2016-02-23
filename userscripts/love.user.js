@@ -49,7 +49,7 @@ else
 var asd = $('<iframe></iframe>').attr({
     'width' : '140px',
     'height' : '140px',
-    'src' : 'https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=0',
+    'src' : 'https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1',
     'frameborder' : '0'
 }).css('padding-top', '7px');
 
