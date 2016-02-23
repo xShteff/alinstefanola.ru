@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         We love The-West!
-// @version      0.01
+// @version      0.02
 // @description  Because magic it's true!
 // @author       Alin "xShteff" Olaru
 // @website      https://xshteff.github.io
@@ -49,15 +49,15 @@ else
 var asd = $('<iframe></iframe>').attr({
     'width' : '140px',
     'height' : '140px',
-    'src' : 'https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1',
+    'src' : 'https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=0',
     'frameborder' : '0'
 }).css('padding-top', '7px');
-
 
 var heartCount = 0;
 var addHeart = function() {
 	var left = Math.floor(Math.random() * 90) + 1;
     var size = Math.floor(Math.random() * 150) + 50;
+    var speed = Math.floor(Math.random() * 5000) + 10000;
     var heart = $('<img>').attr({
         'src': 'https://puu.sh/n35p5/17b7889c71.gif',
         'class': 'heartClass',
@@ -70,12 +70,13 @@ var addHeart = function() {
         'bottom': '0%',
         'position': 'absolute',
         'pointer-events' : 'none',
-        'z-index' : '1337'
+        'z-index' : '1337',
+        'display': 'none'
     });
     $('body').append(heart);
-    $("#xsht_heart_" + heartCount).animate({
+    $("#xsht_heart_" + heartCount).fadeIn('slow').animate({
             bottom: '100%',
-        }, 5000,
+        }, speed,
         function() {
             $(this).remove();
         });
@@ -105,7 +106,6 @@ var stopLove = function() {
     new UserMessage(loveModeOff).show();
 }
 
-
 var icon = $('<div></div>').attr({
     'title': loveModeText,
     'class': 'menulink'
@@ -131,5 +131,3 @@ jQuery("#ui_menubar .ui_menucontainer :last").after($('<div></div>').attr({
     'class': 'ui_menucontainer',
     'id': 'xsht_love_button'
 }).append(icon).append(fix));
-
-
