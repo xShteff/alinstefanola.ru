@@ -2,7 +2,7 @@
 // @name            TW Twitch Emotes
 // @description     Kappa
 // @author          xShteff
-// @version         0.02
+// @version         0.03
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -78,6 +78,12 @@ Game.TextHandler = function() {
             "!el pollo diablo": "elpollodiablo_mirror",
             "el pollo diablo\\?!": "elpollodiablo_front"
         },
+        kappas = {
+        	"KappaPride" : "55338",
+        	"KappaClaus" : "74510",
+        	"KappaWealth" : "81997",
+        	"KappaRoss" : "70433"
+        },
         sa = {
             "a+\\W*(d+\\W*)+m+\\W*e+\\W*!+": {
                 flags: 'gi',
@@ -129,8 +135,11 @@ Game.TextHandler = function() {
             }).replace(MarkerUi.importRegExp, function(str, x, y, desc) {
                 return "<a href='javascript:void(parent.MarkerUi.importMarker(" + x + "," + y + ",\"" + desc.escapeHTML() + "\"))'>Marker: " + desc + "</a>";
             });
+            for(var k in kappas){
+				m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='"+ k +"' title='"+k+"' src='https://static-cdn.jtvnw.net/emoticons/v1/" + kappas[k] + "/1.0' />");
+            }
             for (var k in twitchEmotes.emotes) {
-                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img style='width:20px' alt='"+ k +"' title='"+k+"' src='https://static-cdn.jtvnw.net/emoticons/v1/" + twitchEmotes.emotes[k].image_id + "/1.0' />");
+                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='"+ k +"' title='"+k+"' src='https://static-cdn.jtvnw.net/emoticons/v1/" + twitchEmotes.emotes[k].image_id + "/1.0' />");
             }
             for (var k in sa) {
                 m = m.replace(new RegExp("(^|\\s)" + k, (sa[k].flags ? sa[k].flags : "g")), " <img src='//westzzs.innogamescdn.com/images/chat/emoticons/" + sa[k].src + "' /> " + (sa[k].text ? sa[k].text : '') + "");
