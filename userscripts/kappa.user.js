@@ -2,7 +2,7 @@
 // @name            TW Twitch Emotes
 // @description     Kappa
 // @author          xShteff
-// @version         0.03
+// @version         0.04
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -21,12 +21,15 @@
 // @match           https://*.the-west.sk/game.php*
 // @match           https://*.the-west.fr/game.php*
 // @match           https://*.the-west.it/game.php*
+// @downloadURL     https://xshteff.github.io/userscripts/kappa.user.js
+// @updateURL       https://xshteff.github.io/userscripts/kappa.user.js
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
+var version = 0.04;
 scriptInfo = '<iframe width="360" height="115" src="https://www.youtube.com/embed/BpHSm0KcW7o" frameborder="0" allowfullscreen></iframe>';
 scriptInfo += '<br>List of emotes found at <a href="https://twitchemotes.com/">https://twitchemotes.com/</a>';
-scriptInfo += '<br>Using twitchemote.com\'s public API and images.'; 
+scriptInfo += '<br>Using twitchemote.com\'s public API and images.';
 window.scriptyscript = {
     script: TheWestApi.register('TWKappa', 'TW Twitch Chat Emotes', '2.1', Game.version.toString(), 'xShteff', 'https://xshteff.github.io'),
     setGui: function() {
@@ -39,9 +42,30 @@ window.scriptyscript = {
 window.scriptyscript.init();
 var twitchEmotes;
 
-$.get( "https://twitchemotes.com/api_cache/v2/global.json", function( data ) {
-  twitchEmotes = data;
+$.get("https://twitchemotes.com/api_cache/v2/global.json", function(data) {
+    twitchEmotes = data;
 });
+
+var addonEmotes;
+
+$.get("https://xshteff.github.io/userscripts/emotes.json", function(data) {
+    addonEmotes = data;
+});
+
+var isOutdated = function() {
+    return addonEmotes.latestVersion > version;
+}
+
+var notifyOutdated = function() {
+    if (isOutdated()) {
+        new west.gui.Dialog('TWKappa is outdated', 'There\'s a new version of TWKappa currently available! Do you want to install it?', west.gui.Dialog.SYS_WARNING).addButton("Install!", function() {
+            window.open('https://xshteff.github.io/userscripts/kappa.user.js', '_blank');
+        }).addButton("Close", function() {}).show();
+    }
+
+}
+
+window.setTimeout(notifyOutdated, 5000);
 
 Game.TextHandler = function() {
     var sm = {
@@ -79,10 +103,11 @@ Game.TextHandler = function() {
             "el pollo diablo\\?!": "elpollodiablo_front"
         },
         kappas = {
-        	"KappaPride" : "55338",
-        	"KappaClaus" : "74510",
-        	"KappaWealth" : "81997",
-        	"KappaRoss" : "70433"
+            "KappaPride": "55338",
+            "KappaClaus": "74510",
+            "KappaWealth": "81997",
+            "KappaRoss": "70433",
+            "PeteZarollTie": "81244"
         },
         sa = {
             "a+\\W*(d+\\W*)+m+\\W*e+\\W*!+": {
@@ -135,17 +160,20 @@ Game.TextHandler = function() {
             }).replace(MarkerUi.importRegExp, function(str, x, y, desc) {
                 return "<a href='javascript:void(parent.MarkerUi.importMarker(" + x + "," + y + ",\"" + desc.escapeHTML() + "\"))'>Marker: " + desc + "</a>";
             });
-            for(var k in kappas){
-				m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='"+ k +"' title='"+k+"' src='https://static-cdn.jtvnw.net/emoticons/v1/" + kappas[k] + "/1.0' />");
+            for (var k in addonEmotes.emotes) {
+                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='" + k + "' title='" + k + "' src='" + addonEmotes.emotes[k] + "' />");
+            }
+            for (var k in kappas) {
+                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='" + k + "' title='" + k + "' src='https://static-cdn.jtvnw.net/emoticons/v1/" + kappas[k] + "/1.0' />");
             }
             for (var k in twitchEmotes.emotes) {
-                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='"+ k +"' title='"+k+"' src='https://static-cdn.jtvnw.net/emoticons/v1/" + twitchEmotes.emotes[k].image_id + "/1.0' />");
+                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img alt='" + k + "' title='" + k + "' src='https://static-cdn.jtvnw.net/emoticons/v1/" + twitchEmotes.emotes[k].image_id + "/1.0' />");
             }
             for (var k in sa) {
                 m = m.replace(new RegExp("(^|\\s)" + k, (sa[k].flags ? sa[k].flags : "g")), " <img src='//westzzs.innogamescdn.com/images/chat/emoticons/" + sa[k].src + "' /> " + (sa[k].text ? sa[k].text : '') + "");
             }
-            for(var k in sm){
-				m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img src='//westzzs.innogamescdn.com/images/chat/emoticons/" + sm[k] + ".png?1' />");
+            for (var k in sm) {
+                m = m.replace(new RegExp("(^|\\s)" + k.replace(/([\)\.\^\(])/g, "\\$1"), "g"), " <img src='//westzzs.innogamescdn.com/images/chat/emoticons/" + sm[k] + ".png?1' />");
             }
             if (west && west.events && west.events.Manager) {
                 west.common.forEach(west.events.Manager.getRunningEventsCurrencies(), function(obj) {
