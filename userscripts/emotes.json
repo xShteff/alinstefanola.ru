@@ -2,6 +2,13 @@
     "latestVersion": "0.04",
     "emotes": {
         "FeelsBadMan": "https://cdn.betterttv.net/emote/566c9fc265dbbdab32ec053b/1x",
-        "FeelsGoodMan": "https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x"
+        "FeelsGoodMan": "https://cdn.betterttv.net/emote/566c9fde65dbbdab32ec053e/1x",
+        "tf" : "https://cdn.betterttv.net/emote/54fa8f1401e468494b85b537/1x",
+        "OhMyGoodness" : "https://cdn.betterttv.net/emote/54fa925e01e468494b85b54d/1x",
+        "PancakeMix" : "https://cdn.betterttv.net/emote/54fa927801e468494b85b54e/1x",
+        "GabeN" : "https://cdn.betterttv.net/emote/54fa927801e468494b85b54e/1x",
+        "(puke)" : "https://cdn.betterttv.net/emote/550288fe135896936880fdd4/1x",
+        "SaltyCorn" : "https://cdn.betterttv.net/emote/56901914991f200c34ffa656/1x",
+        "SourPls" : "https://cdn.betterttv.net/emote/566ca38765dbbdab32ec0560/1x"
     }
 }
