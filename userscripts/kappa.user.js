@@ -26,7 +26,7 @@
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
-var version = 0.04;
+var version = 0.05;
 scriptInfo = '<iframe width="360" height="115" src="https://www.youtube.com/embed/BpHSm0KcW7o" frameborder="0" allowfullscreen></iframe>';
 scriptInfo += '<br>List of emotes found at <a href="https://twitchemotes.com/">https://twitchemotes.com/</a>';
 scriptInfo += '<br>Using twitchemote.com\'s public API and images.';
@@ -112,7 +112,7 @@ Game.TextHandler = function() {
         sa = {
             "a+\\W*(d+\\W*)+m+\\W*e+\\W*!+": {
                 flags: 'gi',
-                text: 'meeeÃ¢â‚¬Â¦',
+                text: 'meee',
                 src: "sheep_rainbow.gif"
             },
             "a+\\W*(d+\\W*)+m+\\W*e+": {
