@@ -2,7 +2,7 @@
 // @name            TW Twitch Emotes
 // @description     Kappa
 // @author          xShteff
-// @version         0.04
+// @version         0.06
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -26,11 +26,12 @@
 // @grant           none
 // @run-at          document-end
 // ==/UserScript==
-var version = 0.05;
-scriptInfo = '<iframe width="360" height="115" src="https://www.youtube.com/embed/BpHSm0KcW7o" frameborder="0" allowfullscreen></iframe>';
-scriptInfo += '<br>List of emotes found at <a href="https://twitchemotes.com/">https://twitchemotes.com/</a>';
-scriptInfo += '<br>Using twitchemote.com\'s public API and images.';
-window.scriptyscript = {
+var version = 0.06;
+
+var twitchEmotes;
+
+var scriptInfo = 'Dank meme list <br>';
+window.twkappa = {
     script: TheWestApi.register('TWKappa', 'TW Twitch Chat Emotes', '2.1', Game.version.toString(), 'xShteff', 'https://xshteff.github.io'),
     setGui: function() {
         this.script.setGui(scriptInfo);
@@ -39,18 +40,26 @@ window.scriptyscript = {
         this.setGui();
     }
 };
-window.scriptyscript.init();
-var twitchEmotes;
 
 $.get("https://twitchemotes.com/api_cache/v2/global.json", function(data) {
     twitchEmotes = data;
+    for (var k in twitchEmotes.emotes) {
+        scriptInfo += "<img alt='" + k + "' title='" + k + "' src='https://static-cdn.jtvnw.net/emoticons/v1/" + twitchEmotes.emotes[k].image_id + "/1.0' />";
+    }
 });
 
 var addonEmotes;
 
 $.get("https://xshteff.github.io/userscripts/emotes.json", function(data) {
     addonEmotes = data;
+    for (var k in addonEmotes.emotes) {
+        scriptInfo += "<img alt='" + k + "' title='" + k + "' src='" + addonEmotes.emotes[k] + "' />";
+    }
+    window.twkappa.init();
 });
+
+
+
 
 var isOutdated = function() {
     return addonEmotes.latestVersion > version;
