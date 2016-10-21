@@ -2,7 +2,7 @@
 // @name            TW Twitch Emotes
 // @description     Kappa
 // @author          xShteff
-// @version         0.07
+// @version         0.08
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -31,7 +31,7 @@ var TWKappa = {
         image_size: 200,
     },
     VersionControl: {
-        version: 0.07,
+        version: 0.08,
         isOutdated: function() {
             return TWKappa.Emotes.Extra.storage.latestVersion > TWKappa.VersionControl.version;
         },
@@ -232,7 +232,7 @@ var TWKappa = {
                             'max-width': TWKappa.Settings.image_size + 'px',
                             'max-height': TWKappa.Settings.image_size + 'px'
                         });
-                        return oldfunc(image[0].outerHTML);
+                        return oldfunc("<a href='" + m + "' target='_blank'>" + image[0].outerHTML + "</a>");
                     }
                 }
                 for (var k in TWKappa.Emotes.Extra.storage.emotes)
