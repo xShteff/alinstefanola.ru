@@ -57,5 +57,20 @@
         "FeelsBlueMan" : "https://cdn.betterttv.net/emote/57b4f47651067c5243fe1c60/1x",
         "FeelsTrumpMan" : "https://cdn.betterttv.net/emote/57c4270b34df7eab4ca2690c/1x",
         "FeelsBirthdayMan" : "https://cdn.betterttv.net/emote/55b6524154eefd53777b2580/1x"
+    },
+    "winter": {
+        "IceCold" : {
+            "src": "https://cdn.betterttv.net/emote/5849c9a4f52be01a7ee5f79d/1x",
+            "style":"margin-left:-33px"
+        },
+        "SantaHat" : {
+            "src": "https://cdn.betterttv.net/emote/58487cc6f52be01a7ee5f205/1x",
+            "style": "margin-left:-33px;margin-top: -10px"
+        },
+        "SoSnowy": {
+            "src" :"https://cdn.betterttv.net/emote/567b5b520e984428652809b6/1x",
+            "style":"margin-left:-33px;margin-top: -6px"
+        }
+
     }
 }
