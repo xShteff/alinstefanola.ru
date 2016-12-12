@@ -2,7 +2,7 @@
 // @name            TWKappa
 // @description     Kappa
 // @author          xShteff
-// @version         0.10
+// @version         0.11
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -33,7 +33,7 @@ var TWKappa = {
         video_height: 190
     },
     VersionControl: {
-        version: 0.10,
+        version: 0.11,
         isOutdated: function() {
             return TWKappa.Emotes.Extra.storage.latestVersion > TWKappa.VersionControl.version;
         },
@@ -304,7 +304,7 @@ var TWKappa = {
         TWKappa.GameInject.parser();
         TWKappa.Window.RegisterWestApi();
         if (new Date().getMonth() === 11)
-            $('head').append("<style>div.tw2gui_window.chat .chat_text { overflow:visible; height:35px !important;}</style>")
+            $('head').append("<style>div.tw2gui_window.chat .chat_text { overflow:visible; }</style>")
     }
 }
 
