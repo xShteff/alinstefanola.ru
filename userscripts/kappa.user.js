@@ -2,7 +2,7 @@
 // @name            TWKappa
 // @description     Kappa
 // @author          xShteff
-// @version         0.11
+// @version         0.12
 // @match           https://*.the-west.net/game.php*
 // @match           https://*.the-west.de/game.php*
 // @match           https://*.the-west.pl/game.php*
@@ -196,7 +196,7 @@ var TWKappa = {
             });
 
             if ($('#twkappa_init_button').length == 0)
-                $("#ui_menubar .ui_menucontainer :last").after($('<div></div>').attr({
+                $("#ui_menubar").append($('<div></div>').attr({
                     'class': 'ui_menucontainer',
                     'id': 'twkappa_init_button'
                 }).append(icon).append(cap));
