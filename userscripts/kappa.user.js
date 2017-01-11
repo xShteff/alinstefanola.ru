@@ -33,7 +33,7 @@ var TWKappa = {
         video_height: 190
     },
     VersionControl: {
-        version: 0.11,
+        version: 0.12,
         isOutdated: function() {
             return TWKappa.Emotes.Extra.storage.latestVersion > TWKappa.VersionControl.version;
         },
