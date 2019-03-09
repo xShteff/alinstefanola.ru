@@ -1,0 +1,16 @@
+{
+  "name": "alstol.github.io",
+  "version": "1.0.0",
+  "description": "GitHub Pages version of website",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alstol/alstol.github.io.git"
+  },
+  "author": "Alin Stefan Olaru",
+  "homepage": "https://github.com/alstol/alstol.github.io#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "jQuery": "^1.7.4",
+    "vue": "^2.6.8"
+  }
+}
