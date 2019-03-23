@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+html, body {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.headshot img {
+  height: 200px;
+  border-radius: 50%;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.headshot img:hover {
+  filter: grayscale(0%);
+}
+
+.container {
+  text-align: center;
+  max-width: 800px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
