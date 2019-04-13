@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Alin Stefan Olaru</title>
         <script src="dist/js/jquery.js"></script>
+        <script src="dist/js/vue.min.js"></script>
         <link rel="stylesheet" target="_blank" href="style.css">
     </head>
     <body>
@@ -15,11 +16,10 @@
                 <h1>Hiya!</h1>
 
                 <p>
-                    My name's Alin Stefan Olaru. I'm some weird geek on the
-                    internet that used to play a lot of games. Currently I'm a
-                    software engineer at
-                    <a target="_blank"
-                        href="https://lego.com">LEGO Group</a>.
+                    My name's Alin Stefan Olaru. Geek, former gamer, technology
+                    enthusiast, "The IT Guy". I'm currently a Junior IT
+                    Engineer at <a target="_blank" href="https://lego.com">LEGO
+                        Systems A/S</a> in Billund.
                 </p>
                 <p>
                     Have an idea and you think I could help? Maybe you want to
@@ -28,31 +28,17 @@
                     GitHub) represent my own opinion. Feel free to use one of
                     the following links:
                 </p>
-                <ul>
-                    <li>
+                <ul id="social">
+                    <li v-for="item in socialLinks">
                         <a
-                            target="_blank"
-                            href="https://github.com/alstol">GitHub</a>
-                    </li>
-                    <li>
-                        <a
-                            target="_blank"
-                            href="https://www.linkedin.com/in/alinstefanolaru/">LinkedIn</a>
-                    </li>
-                    <li>
-                        <a
-                            target="_blank"
-                            href="https://twitter.com/xShteff">Twitter</a>
-                    </li>
-                    <li>
-                        <a
-                            href="mailto:alinstefanolaru@gmail.com?subject='Hello!'">
-                            E-mail
-                            (personal)
+                            v-bind:href="item.url"
+                            v-bind:target="(item.newTab) ? '_blank' : ''">
+                            {{item.label}}
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
+        <script src="dist/js/data/social.js"></script>
     </body>
 </html>

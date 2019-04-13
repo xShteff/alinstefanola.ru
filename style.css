@@ -7,19 +7,21 @@ html, body {
 .headshot {
   height: 200px;
   width: 200px;
-  background: url('eddshot.png');
+  background: url('dist/img/eddshotnew.jpg');
   background-position: center;
   background-size: cover;
   border-radius: 50%;
-  filter: grayscale(100%);
-  transition: filter 0.5s ease;
+  filter: grayscale(100%) contrast(160%);
+  transition: all 0.5s ease;
   margin-left: auto;
   margin-right: auto;
   cursor:pointer;
+  border: 5px solid rgb(69, 69, 69);
 }
 
 .headshot:hover {
-  filter: grayscale(0%);
+  filter: grayscale(0%) contrast(130%);
+  border: 10px solid rgb(200, 200, 200);
 }
 
 .container {
@@ -29,4 +31,8 @@ html, body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#social {
+  list-style: none;
 }
