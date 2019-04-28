@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Omg stalker!</title>
-        <script src="dist/js/jquery.js"></script>
-        <script src="dist/js/vue.min.js"></script>
-        <link rel="stylesheet" target="_blank" href="style.css">
-    </head>
-    <body>
-        <div class="container">
-            <div class="intro">
-                <div class="headshot"></div>
-                <h1>Hiya!</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Omg stalker!</title>
+    <script src="dist/js/jquery.js"></script>
+    <script src="dist/js/vue.min.js"></script>
+    <link rel="stylesheet" target="_blank" href="style.css" />
+  </head>
+  <body>
+    <div class="backgroundimg"></div>
+    <div class="popover">
+      <div class="intro">
+        <div class="headshot" title="Ew! Get your hand out of my face!"></div>
+        <h1>Hiya!</h1>
 
-                <p>
-                    Geek, former gamer, technology
-                    enthusiast, "The IT Guy". I'm currently a Junior IT
-                    Engineer at <a target="_blank" href="https://lego.com">LEGO
-                        Systems A/S</a> in Billund.
-                </p>
-                <p>
-                    Have an idea and you think I could help? Maybe you want to
-                    say 'Hi!'? I'm allowing you to stalk me online. Please be
-                    aware that any activity of mine online (Twitter, LinkedIn,
-                    GitHub) represent my own opinion. Feel free to use one of
-                    the following links:
-                </p>
-                <ul id="social">
-                    <li v-for="item in socialLinks">
-                        <a
-                            v-bind:href="item.url"
-                            v-bind:target="(item.newTab) ? '_blank' : ''">
-                            {{item.label}}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <script src="dist/js/data/social.js"></script>
-    </body>
+        <p>
+          This page belongs to some random geek on the internet who's currently
+          a Junior IT Engineer at
+          <a target="_blank" href="https://lego.com">LEGO Systems A/S</a>
+          in Billund.
+        </p>
+        <p>
+          Have an idea and you think I could help? Maybe you want to say 'Hi!'?
+          I'm allowing you to stalk me online. Please be aware that any activity
+          of mine online (Twitter, LinkedIn, GitHub) represent my own opinion.
+        </p>
+        <p>
+          Feel free to use any of the following links:
+        </p>
+        <ul id="social">
+          <li v-for="item in socialLinks">
+            <a
+              v-bind:href="item.url"
+              v-bind:target="(item.newTab) ? '_blank' : ''"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="dist/js/data/social.js"></script>
+  </body>
 </html>
