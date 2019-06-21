@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting colors</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <script src="jscolor.js"></script>
+
+    <div style="position:absolute; left:380px; top:10px;">
+      R, G, B = <span id="rgb"></span><br />
+    </div>
+
+    <input class="jscolor {onFineChange:'update(this)'}" value="ffcc00" />
+    <button id="busyUpdate">Update BusyLight</button>
+    <script>
+        var color = {
+            r: 0,
+            g: 0,
+            b: 0
+        }
+      function update(picker) {
+        color.r = picker.rgb[0];
+        color.g = picker.rgb[1];
+        color.b = picker.rgb[2];
+        document.getElementById("rgb").innerHTML =
+          Math.round(picker.rgb[0]) +
+          ", " +
+          Math.round(picker.rgb[1]) +
+          ", " +
+          Math.round(picker.rgb[2]);
+          $.get(`http://ec2-34-250-101-87.eu-west-1.compute.amazonaws.com/color/${color.r}/${color.g}/${color.b}`, (res) => {
+                  console.log(res);
+              });
+      }
+      $(document).ready(() => {
+          $("#busyUpdate").click(() => {
+              $.get(`http://ec2-34-250-101-87.eu-west-1.compute.amazonaws.com/color/${color.r}/${color.g}/${color.b}`, (res) => {
+                  console.log(res);
+              });
+          })
+      })
+    </script>
+  </body>
+</html>
