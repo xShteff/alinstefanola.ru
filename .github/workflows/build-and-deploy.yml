@@ -16,6 +16,6 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: develop
         BRANCH: master
-        FOLDER: dist
+        FOLDER: dist/alinstefanolaru
         BUILD_SCRIPT: npm install && npm run-script build
         CNAME: alinstefanola.ru
