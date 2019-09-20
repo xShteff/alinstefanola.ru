@@ -5,9 +5,9 @@
     "**/vscode-extension/**",
     "**/.git/**",
     ".vscode",
-    "typings",
+    "typings"
   ],
-  "editor.formatOnSave": true,
+  // "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.tslint": true,
     "source.organizeImports": false
@@ -22,7 +22,5 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "cSpell.words": [
-    "antd",
-  ]
+  "cSpell.words": ["antd"]
 }

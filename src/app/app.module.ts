@@ -1,9 +1,9 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { NgZorroAntdModule, NZ_I18N, en_US } from "ng-zorro-antd";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { HomeComponent } from './components/main/home/home.component';
 import { ParallaxIntroComponent } from './components/main/parallax-intro/parallax-intro.component';
 
