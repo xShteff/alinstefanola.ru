@@ -10,10 +10,26 @@ import { AnchorComponent } from './components/main/anchor/anchor.component';
 import { IntroComponent } from './components/main/intro/intro.component';
 import { ExperienceTimelineComponent } from './components/main/experience-timeline/experience-timeline.component';
 import { JobEventComponent } from './components/main/job-event/job-event.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HobbiesComponent } from './components/main/hobbies/hobbies.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ParallaxIntroComponent, AnchorComponent, IntroComponent, ExperienceTimelineComponent, JobEventComponent],
-  imports: [BrowserModule, AppRoutingModule, NgZorroAntdModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ParallaxIntroComponent,
+    AnchorComponent,
+    IntroComponent,
+    ExperienceTimelineComponent,
+    JobEventComponent,
+    HobbiesComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgZorroAntdModule,
+    BrowserAnimationsModule
+  ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })

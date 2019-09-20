@@ -1,7 +1,15 @@
 <p>
-  {{ job.dateStart }} - {{ job.dateEnd }} <br />
-  {{ job.jobTitle }} @{{ job.company }}
-</p>
-<p>
+  {{ job.dateStart }} <span *ngIf="job.dateEnd"> - {{ job.dateEnd }} </span>
+  <span *ngIf="job.jobTitle && job.company">
+    <br />
+    {{ job.jobTitle }} @{{ job.company }}
+  </span>
+  <br />
   {{ job.description }}
 </p>
+
+<ng-container *ngIf="!!job.keywords">
+  <nz-tag [nzColor]="'green'" *ngFor="let keyword of job.keywords">{{
+    keyword
+  }}</nz-tag>
+</ng-container>

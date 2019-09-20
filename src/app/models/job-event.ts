@@ -4,4 +4,6 @@ export interface JobEvent {
   jobTitle?: string;
   company?: string;
   description?: string;
+  keywords?: string[];
+  icon: string;
 }
