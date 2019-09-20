@@ -13,6 +13,9 @@ import { JobEventComponent } from './components/main/job-event/job-event.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HobbiesComponent } from './components/main/hobbies/hobbies.component';
 import { ParallaxDirective } from './directives/parallax.directive';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { ParallaxDirective } from './directives/parallax.directive';
     ExperienceTimelineComponent,
     JobEventComponent,
     HobbiesComponent,
-    ParallaxDirective
+    ParallaxDirective,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgZorroAntdModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -1,14 +1,13 @@
 <aso-parallax-intro></aso-parallax-intro>
 <nz-layout>
   <nz-affix>
-    <nz-header class="header">
-      <div class="logo"></div>
-    </nz-header>
+    <aso-header></aso-header>
   </nz-affix>
   <nz-content>
-    <div class="inner-content">
+    <div class="inner-content" #top>
       <router-outlet></router-outlet>
     </div>
   </nz-content>
-  <nz-footer>alinstefanola.ru ©2019</nz-footer>
+  <aso-footer></aso-footer>>
 </nz-layout>
+<nz-back-top nzVisibilityHeight="200" [nzTarget]="top"></nz-back-top>

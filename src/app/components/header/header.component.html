@@ -1,0 +1,15 @@
+<nz-header class="header">
+  <div class="logo"></div>
+  <ul class="social-media">
+    <li *ngFor="let item of contactMethods">
+      <a
+        [href]="item.url"
+        [target]="item.target"
+        nz-tooltip
+        [nzTooltipTitle]="item.label"
+        nzTooltipPlacement="bottomRight"
+        ><i nz-icon [nzType]="item.icon" [nzTheme]="item.theme"></i
+      ></a>
+    </li>
+  </ul>
+</nz-header>
