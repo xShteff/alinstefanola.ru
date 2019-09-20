@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DateUtilsService } from 'src/app/services/date-utils.service';
 
 @Component({
   selector: 'aso-intro',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./intro.component.less']
 })
 export class IntroComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  public age: number;
+  constructor(private dateUtils: DateUtilsService) {
+    this.age = this.dateUtils.yearsSince('1995-03-19');
   }
 
+  ngOnInit() {}
 }

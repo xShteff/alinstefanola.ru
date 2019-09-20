@@ -28,7 +28,7 @@ export class ExperienceTimelineComponent implements OnInit {
           'REST APIs',
           'NoSQL',
           'MySQL'
-        ]
+        ].sort()
       },
       {
         icon: '🌟',
@@ -36,12 +36,21 @@ export class ExperienceTimelineComponent implements OnInit {
         description: 'Graduated BSc of Software Engineering'
       },
       {
+        icon: '🏆',
+        dateStart: 'January 2018',
+        jobTitle: 'Bachelor Project Award',
+        company: 'VIA University College',
+        description:
+          // tslint:disable-next-line: max-line-length
+          '"For the courage to take on a project of very high technological complexity, and for applying the complex technology with a constant eye to common sense, and practical use. And, in the end, making it all work."'
+      },
+      {
         icon: '🏢',
         company: 'EConGrid',
         dateEnd: 'February 2018',
         dateStart: 'February 2017',
         jobTitle: 'Student Software Engineer',
-        keywords: ['ASP.NET Core', 'Angular.JS', 'Websockets']
+        keywords: ['ASP.NET Core', 'Angular.JS', 'Websockets'].sort()
       },
       {
         icon: '🏢',
@@ -49,7 +58,7 @@ export class ExperienceTimelineComponent implements OnInit {
         jobTitle: 'Software Engineer Intern',
         dateStart: 'August 2016',
         dateEnd: 'January 2017',
-        keywords: ['ASP.NET', 'REST APIs']
+        keywords: ['ASP.NET', 'REST APIs'].sort()
       },
       {
         icon: '🏢',
