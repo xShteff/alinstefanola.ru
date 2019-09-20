@@ -7,7 +7,7 @@ This repo's is apparently a personal page that belongs to Alin Stefan Olaru (not
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
 
 ### Build/Deployment
-Project is automatically built and deployed on GitHub Pages with [GitHub Actions](https://github.com/alstol/alstol.github.io/actions). Feel free to [yoink](https://www.urbandictionary.com/define.php?term=Yoink) my workflow.
+Project is automatically built and deployed on GitHub Pages with [GitHub Actions](https://github.com/alstol/alstol.github.io/actions). Feel free to [yoink](https://www.urbandictionary.com/define.php?term=Yoink) my [workflow](https://github.com/alstol/alstol.github.io/blob/develop/.github/workflows/build-and-deploy.yml).
 You can see the compiled application under the [master branch](https://github.com/alstol/alstol.github.io/tree/master). Nothing really impressive there.
 
 ### Why overlycomplicate something that can be done with simple HTML?
