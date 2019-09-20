@@ -1,8 +1,10 @@
 name: Build and Deploy
 on:
   push:
-    branches:
-      - develop
+    paths:
+      - 'src/*'
+      - '*.json'
+      - '*.js'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
