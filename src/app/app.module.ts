@@ -12,6 +12,7 @@ import { ExperienceTimelineComponent } from './components/main/experience-timeli
 import { JobEventComponent } from './components/main/job-event/job-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HobbiesComponent } from './components/main/hobbies/hobbies.component';
+import { ParallaxDirective } from './directives/parallax.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HobbiesComponent } from './components/main/hobbies/hobbies.component';
     IntroComponent,
     ExperienceTimelineComponent,
     JobEventComponent,
-    HobbiesComponent
+    HobbiesComponent,
+    ParallaxDirective
   ],
   imports: [
     BrowserModule,
