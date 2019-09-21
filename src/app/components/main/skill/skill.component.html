@@ -1,8 +1,13 @@
 <nz-card class="card" [nzTitle]="skill.name" nzSize="small">
   <nz-progress
+    nz-tooltip
+    [nzTooltipTitle]="skill.name + ': ' + format(skill.rating * 10)"
+    nzTooltipPlacement="top"
     [nzWidth]="65"
     [nzPercent]="skill.rating * 10"
     nzType="circle"
     [nzFormat]="format"
+    [nzStrokeColor]="{ '0%': '#37db51', '100%': '#119125' }"
+    nzTitle="3 done / 3 in progress / 4 to do"
   ></nz-progress>
 </nz-card>
