@@ -1,0 +1,8 @@
+<nz-card class="card" [nzTitle]="skill.name" nzSize="small">
+  <nz-progress
+    [nzWidth]="65"
+    [nzPercent]="skill.rating * 10"
+    nzType="circle"
+    [nzFormat]="format"
+  ></nz-progress>
+</nz-card>

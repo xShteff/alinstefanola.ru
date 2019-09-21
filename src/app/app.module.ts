@@ -16,6 +16,8 @@ import { ParallaxDirective } from './directives/parallax.directive';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SkillComponent } from './components/main/skill/skill.component';
+import { SkillListComponent } from './components/main/skill-list/skill-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     HobbiesComponent,
     ParallaxDirective,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SkillComponent,
+    SkillListComponent
   ],
   imports: [
     BrowserModule,
