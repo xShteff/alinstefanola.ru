@@ -4,7 +4,7 @@ import { Directive, Input, ElementRef, HostListener } from '@angular/core';
   selector: '[asoParallax]'
 })
 export class ParallaxDirective {
-  @Input('ratio') parallaxRatio = 0.2;
+  @Input() parallaxRatio = 1;
   initialTop = 0;
 
   constructor(private eleRef: ElementRef) {
