@@ -1,11 +1,24 @@
+@import (css) url('https://fonts.googleapis.com/css?family=Dancing+Script|Share+Tech&display=swap');
 .img-container {
   height: calc(100% - 64px);
   color: white;
 }
 
+.name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3em;
+
+}
+
+.role{
+  font-family: 'Share Tech', sans-serif;
+  position: relative;
+  bottom: 70px;
+}
+
 .img {
   position: fixed;
-  z-index: -1;
+  z-index: -2;
   top:0px;
   left:0px;
   width: 100%;
@@ -15,16 +28,23 @@
 }
 
 .intro {
-  top: calc(50% - 50px);
+  top: calc(50% - 150px);
   font-size: 30px;
   color: white;
   position: relative;
   text-align: center;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
 }
-
 
 @media only screen and (max-width: 720px) {
   .intro {
     font-size: 15px;
+  }
+  .role{
+    font-family: 'Share Tech', sans-serif;
+    position: relative;
+    bottom: 40px;
   }
 }
