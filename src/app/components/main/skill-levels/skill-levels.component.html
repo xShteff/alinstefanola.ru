@@ -1,0 +1,42 @@
+<div class="content">
+  <nz-divider nzText="Skills"></nz-divider>
+  <p>These are based purely on personal approximations.</p>
+  <p>
+    A lot of the AWS stuff is mentioned individually simply because saying "AWS"
+    would include a large variety of products. I've been responsible of setting
+    up the infrastructure while working @LEGO Group. I'm able to create,
+    dockerise, deploy, secure and route any application (Angular, Java, .NET,
+    Node.JS).
+  </p>
+  <p>
+    Oh yeah. I might also include tools that I'm able to use on a rather more
+    advanced level.
+  </p>
+  <nz-divider nzText="Advanced"></nz-divider>
+  <nz-tag
+    class="skill"
+    [nzColor]="'#119125'"
+    *ngFor="let skill of skills.expert"
+  >
+    {{ skill }}
+  </nz-tag>
+  <nz-divider nzText="Intermediate"></nz-divider>
+  <nz-tag
+    class="skill"
+    [nzColor]="'#119125'"
+    *ngFor="let skill of skills.intermediate"
+  >
+    {{ skill }}
+  </nz-tag>
+  <nz-divider nzText="Beginner"></nz-divider>
+  <p>
+    <i>(things i've fiddled around with or haven't worked that much with)</i>
+  </p>
+  <nz-tag
+    class="skill"
+    [nzColor]="'#119125'"
+    *ngFor="let skill of skills.beginner"
+  >
+    {{ skill }}
+  </nz-tag>
+</div>

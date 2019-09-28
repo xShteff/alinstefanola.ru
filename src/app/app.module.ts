@@ -18,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SkillComponent } from './components/main/skill/skill.component';
 import { SkillListComponent } from './components/main/skill-list/skill-list.component';
+import { SkillLevelsComponent } from './components/main/skill-levels/skill-levels.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SkillListComponent } from './components/main/skill-list/skill-list.comp
     HeaderComponent,
     FooterComponent,
     SkillComponent,
-    SkillListComponent
+    SkillListComponent,
+    SkillLevelsComponent
   ],
   imports: [
     BrowserModule,
