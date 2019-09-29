@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { HomeComponent } from './components/main/home.component';
+import { MainComponent } from './components/main/main.component';
 import { ParallaxIntroComponent } from './components/main/parallax-intro/parallax-intro.component';
 import { AnchorComponent } from './components/main/anchor/anchor.component';
 import { IntroComponent } from './components/main/intro/intro.component';
@@ -21,7 +21,7 @@ import { SkillLevelsComponent } from './components/main/skill-levels/skill-level
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    MainComponent,
     ParallaxIntroComponent,
     AnchorComponent,
     IntroComponent,
