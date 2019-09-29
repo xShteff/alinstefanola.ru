@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { HomeComponent } from './components/main/home/home.component';
+import { HomeComponent } from './components/main/home.component';
 import { ParallaxIntroComponent } from './components/main/parallax-intro/parallax-intro.component';
 import { AnchorComponent } from './components/main/anchor/anchor.component';
 import { IntroComponent } from './components/main/intro/intro.component';
@@ -16,8 +16,6 @@ import { ParallaxDirective } from './directives/parallax.directive';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SkillComponent } from './components/main/skill/skill.component';
-import { SkillListComponent } from './components/main/skill-list/skill-list.component';
 import { SkillLevelsComponent } from './components/main/skill-levels/skill-levels.component';
 
 @NgModule({
@@ -33,8 +31,6 @@ import { SkillLevelsComponent } from './components/main/skill-levels/skill-level
     ParallaxDirective,
     HeaderComponent,
     FooterComponent,
-    SkillComponent,
-    SkillListComponent,
     SkillLevelsComponent
   ],
   imports: [
