@@ -40,6 +40,7 @@ export class ExperienceTimelineComponent implements OnInit {
         dateStart: 'January 2018',
         jobTitle: 'Bachelor Project Award',
         company: 'VIA University College',
+        keywords: ['AR Applications', '.NET Code', 'WebSockets', 'RabbitMQ', 'HoloLens'],
         description:
           // tslint:disable-next-line: max-line-length
           '"For the courage to take on a project of very high technological complexity, and for applying the complex technology with a constant eye to common sense, and practical use. And, in the end, making it all work."'
@@ -50,7 +51,7 @@ export class ExperienceTimelineComponent implements OnInit {
         dateEnd: 'February 2018',
         dateStart: 'February 2017',
         jobTitle: 'Student Software Engineer',
-        keywords: ['ASP.NET Core', 'Angular.JS', 'Websockets'].sort()
+        keywords: ['ASP.NET Core', 'Angular.JS', 'WebSockets'].sort()
       },
       {
         icon: '🏢',
@@ -58,21 +59,23 @@ export class ExperienceTimelineComponent implements OnInit {
         jobTitle: 'Software Engineer Intern',
         dateStart: 'August 2016',
         dateEnd: 'January 2017',
-        keywords: ['ASP.NET', 'REST APIs'].sort()
+        keywords: ['ASP.NET', 'REST APIs', 'WebSockets', 'Angular.JS'].sort()
       },
       {
         icon: '🏢',
         company: 'InnoGames GmbH',
         dateEnd: 'August 2017',
         dateStart: 'July 2016',
-        jobTitle: 'Community Manager'
+        jobTitle: 'Community Manager',
+        keywords: ['Team Management', 'MediaWiki', 'QA', 'Leadership', 'JavaScript', 'Social Media'].sort()
       },
       {
         icon: '🏢',
         company: 'VIA University College',
         dateEnd: 'January 2016',
         dateStart: 'August 2015',
-        jobTitle: 'Student Lecturer'
+        jobTitle: 'Student Lecturer',
+        keywords: ['Teaching', 'Java'].sort()
       },
       {
         icon: '👨‍🎓',
