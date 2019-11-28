@@ -1,0 +1,53 @@
+element {
+    --background: rgb(0, 0, 168);
+    --lightgray: rgb(168, 168, 168);
+}
+
+@font-face {
+    font-family: 'CustomTerminal';
+    src: url('./dist/fonts/terminal.TTF') format('truetype')
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'CustomTerminal';
+    background: rgb(0, 0, 168);
+    color: rgb(240, 245, 255);
+    overflow: hidden;
+    padding: 0
+}
+
+header {
+    background: rgb(168, 168, 168);
+    color: rgb(0,0,0);
+    padding: 5px 10px;
+}
+
+header .title {
+    float:left;
+    display: contents;
+}
+
+header .links {
+    float:right;
+}
+
+.border-container {
+    border: 1px solid rgb(168, 168, 168);
+    height: 100%;
+    margin: 15px;
+    padding: 10px;
+}
+
+.border-container .title {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    background: rgb(168, 168, 168);
+    color: rgb(0, 0, 168);
+    position: relative;
+    bottom: 26px;
+    padding: 5px 10px;
+}
