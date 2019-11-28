@@ -29,8 +29,9 @@ header .title {
     float:left;
     display: contents;
 }
-.links a {
-    margin-left: 5px;
+.links li {
+    list-style: none;
+    margin-top: 5px;
 }
 header .links {
     float:right;
