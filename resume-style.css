@@ -1,0 +1,102 @@
+html,
+body {
+  font-family: sans-serif;
+}
+
+.resume {
+  display: grid;
+  width: 70%;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+  grid-template-areas:
+    "photo name"
+    "about work"
+    "skills work"
+    "community education";
+}
+
+.circle {
+  border: 1px solid black;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.grid-area {
+  padding: 1em 1em 1em 1em;
+}
+
+.grid-area h1 {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+}
+
+.name {
+  grid-area: name;
+  font-size: 69px;
+}
+
+.photo {
+  grid-area: photo;
+  background-color: grey;
+}
+
+.about {
+  grid-area: about;
+  background-color: grey;
+}
+
+.about p {
+  font-style: italic;
+}
+
+.work {
+  grid-area: work;
+}
+
+.skills {
+  grid-area: skills;
+  background-color: grey;
+}
+
+.education {
+  grid-area: education;
+}
+
+.community {
+  grid-area: community;
+  background-color: grey;
+}
+
+
+
+@media (max-width: 1200px) {
+  .resume {
+    width: 98%;
+  }
+
+  .resume {
+    grid-template-areas:
+      "photo name"
+      "about about"
+      "work work"
+      "education education"
+      "skills skills"
+      "community community";
+  }
+}
+
+.wrapper {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headshot {
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
