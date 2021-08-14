@@ -8,88 +8,93 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <div class="title">
+    <div id="app">
+      <header>
+        <ul class="menu">
+          <li v-for="pageItem in pages" v-bind:class="{ selected: page == pageItem}" v-on:click="setPage(pageItem)">
+            {{capitalizeFirst(pageItem)}}
+          </li>
+        </ul>
+        <!-- <div class="title">
         alinstefanola.ru
-      </div>
-    </header>
-    <div class="border-container">
-      <div class="title">
-        Intro
-      </div>
+      </div> -->
+      </header>
+      <div class="border-container">
+        <div class="title">{{capitalizeFirst(page)}}</div>
 
-      <div class="modal">
-        <div class="border-container">
-          <table>
-            <tr>
-              <td>
-                <p>
-                  <i>
-                    Passionate Software Engineer with core abilities in
-                    designing, building, deploying and maintaining software. The
-                    go-to guy in case you want to hear the latest and greatest
-                    in the IT world.
-                  </i>
-                </p>
-                <p>
-                  Hello there! My name is Alin (I like to use the americanised
-                  version of my name - Allen). I'm a 26y/o guy that moved to
-                  Denmark to pursue his true passion: Software Engineering.
-                </p>
-                <p>
-                  I'm currently an IT Engineer at
-                  <a href="http://lego.com/"> LEGO Systems A/S </a>
-                  in Billund.
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>
-                  Got any idea that you think I could help with? Maybe just want
-                  to say 'Hi'? Feel free to connect with me using any of the
-                  following links:
-                </p>
-                <ul class="links">
-                  <li>
-                    <a href="https://github.com/xshteff" target="_blank"
-                      >GitHub</a
-                    >
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/xshteff" target="_blank"
-                      >Twitter</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.linkedin.com/in/alinstefanolaru/"
-                      target="_blank"
-                      >LinkedIn</a
-                    >
-                  </li>
-                  <li>
-                    <a href="mailto:mail@alinstefanola.ru?subject=Hello"
-                      >E-mail (personal)</a
-                    >
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>
-                  Please be aware that any kind of message/opinion posted on any
-                  of those links do NOT represent my employer.
-                </p>
-                <p>
-                  TODO: Make responsive
-                </p>
-              </td>
-            </tr>
-          </table>
+        <div class="modal">
+          <div class="border-container">
+            <table>
+              <tr v-if="page == 'intro'">
+                <td>
+                  <p>
+                    <i>
+                      Passionate Software Engineer with core abilities in
+                      designing, building, deploying and maintaining software.
+                      The go-to guy in case you want to hear the latest and
+                      greatest in the IT world.
+                    </i>
+                  </p>
+                  <p>
+                    Hello there! My name is Alin (I like to use the americanised
+                    version of my name - Allen). I'm a 26y/o guy that moved to
+                    Denmark to pursue his true passion: Software Engineering.
+                  </p>
+                  <p>
+                    I'm currently an IT Engineer at
+                    <a href="http://lego.com/"> LEGO Systems A/S </a>
+                    in Billund.
+                  </p>
+                </td>
+              </tr>
+              <tr v-if="page == 'socials'">
+                <td>
+                  <p>
+                    Got any idea that you think I could help with? Maybe just
+                    want to say 'Hi'? Feel free to connect with me using any of
+                    the following links:
+                  </p>
+                  <ul class="links">
+                    <li>
+                      <a href="https://github.com/xshteff" target="_blank"
+                        >GitHub</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://twitter.com/xshteff" target="_blank"
+                        >Twitter</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.linkedin.com/in/alinstefanolaru/"
+                        target="_blank"
+                        >LinkedIn</a
+                      >
+                    </li>
+                    <li>
+                      <a href="mailto:mail@alinstefanola.ru?subject=Hello"
+                        >E-mail (personal)</a
+                      >
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    Please be aware that any kind of message/opinion posted on
+                    any of those links do NOT represent my employer.
+                  </p>
+                  <p>TODO: Make responsive</p>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

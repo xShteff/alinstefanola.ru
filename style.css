@@ -1,82 +1,100 @@
 element {
-    --background: rgb(0, 0, 168);
-    --lightgray: rgb(168, 168, 168);
+  --background: rgb(0, 0, 168);
+  --lightgray: rgb(168, 168, 168);
 }
 
 @font-face {
-    font-family: 'CustomTerminal';
-    src: url('./dist/fonts/terminal.TTF') format('truetype')
+  font-family: "CustomTerminal";
+  src: url("./dist/fonts/terminal.TTF") format("truetype");
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    font-family: 'CustomTerminal';
-    background: rgb(0, 0, 168);
-    color: rgb(240, 245, 255);
-    overflow: hidden;
-    padding: 0
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "CustomTerminal";
+  background: rgb(0, 0, 168);
+  color: rgb(240, 245, 255);
+  overflow: hidden;
+  padding: 0;
 }
 
 header {
-    background: rgb(168, 168, 168);
-    color: rgb(0,0,0);
-    padding: 5px 10px;
+  background: rgb(168, 168, 168);
+  color: rgb(0, 0, 0);
+  padding: 0px 10px;
 }
 
-header .title {
-    float:left;
-    display: contents;
-}
 .links li {
-    list-style: none;
-    margin-top: 5px;
+  list-style: none;
+  margin-top: 5px;
 }
+
 header .links {
-    float:right;
+  float: right;
 }
 
 .border-container {
-    border: 1px solid rgb(168, 168, 168);
-    height: 100%;
-    margin: 15px;
-    padding: 10px;
+  border: 1px solid rgb(168, 168, 168);
+  height: 100%;
+  margin: 15px;
+  padding: 10px;
 }
 
 .border-container .title {
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    background: rgb(168, 168, 168);
-    color: rgb(0, 0, 168);
-    position: relative;
-    bottom: 26px;
-    padding: 5px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  background: rgb(168, 168, 168);
+  color: rgb(0, 0, 168);
+  position: relative;
+  bottom: 26px;
+  padding: 5px 10px;
 }
 
 .modal {
-    background: rgb(168, 168, 168);
-    border: 1px solid black;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    color: black;
-    text-align: center;
-    box-shadow: 15px 15px 0px 0px black;
-    margin-top: 50px;
+  background: rgb(168, 168, 168);
+  border: 1px solid black;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  text-align: center;
+  box-shadow: 15px 15px 0px 0px black;
+  margin-top: 50px;
 }
 
 .modal .border-container {
-    margin: 10px 4px;
-    padding: 0;
+  margin: 10px 4px;
+  padding: 0;
 }
 
 table {
-    border-collapse: collapse;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-    padding: 10px 100px;
-  }
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 10px 100px;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.menu li.selected {
+    color: rgb(168, 168, 168);
+    background: black;
+    padding: 2px 10px;
+}
