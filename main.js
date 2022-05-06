@@ -10,6 +10,11 @@ var app = new Vue({
       },
       capitalizeFirst: function(thing) {
           return `${thing.charAt(0).toUpperCase()}${thing.slice(1, thing.length)}`;
+      },
+      calculateBirthday: function() {
+        var birthday = new Date("March 19 1995");
+        var diff = new Date(new Date() - birthday);
+        return Math.abs(1970 - diff.getUTCFullYear());
       }
   }
 });
